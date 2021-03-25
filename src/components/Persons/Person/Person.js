@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import styled from 'styled-components';
 import classes from './Person.css';
 
@@ -19,23 +19,25 @@ import classes from './Person.css';
 
 
 
-const person = (props) => {
-
+class Person extends Component {
     // const rnd = Math.random();
 
     // if (rnd > 0.7) {
     //     throw new Error('something went wrong');
     // }
-    return (
-        //<div className="Person" style={style}>
-        <div className={classes.Person}>
-            <p onClick={props.click}>I am a {props.name} and i am {props.age} years old</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.name} />
-        </div>
+    render() {
+        console.log('[Person.js] rendering...');
+        return (
+            //<div className="Person" style={style}>
+            <div className={classes.Person}>
+                <p onClick={this.props.click}>I am a {this.props.name} and i am {this.props.age} years old</p>
+                <p>{this.props.children}</p>
+                <input type="text" onChange={this.props.changed} value={this.props.name} />
+            </div>
 
 
-    );
+        );
+    }
 }
 
-export default person;
+export default Person;
