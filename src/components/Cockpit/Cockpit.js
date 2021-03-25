@@ -5,6 +5,7 @@ import classes from './Cockpit.css'
 const cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit] useEffect');
+        // you can also send Http request here
     });
     const assignedClasses = [];
     let btnClass = '';
