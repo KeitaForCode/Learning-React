@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 //import styled from 'styled-components';
 import classes from './Person.css';
 import Auxiliary from '../../../hoc/Auxiliary';
+import withClass from '../../../hoc/withClass';
 
 // const StyleDiv = styled.div`
 //         width: 60%;
@@ -21,6 +23,15 @@ import Auxiliary from '../../../hoc/Auxiliary';
 
 
 class Person extends Component {
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef()
+    }
+
+    componentDidMount() {
+        //this.inputElement.focus();
+        this.inputElementRef.current.focus();
+    }
     // const rnd = Math.random();
 
     // if (rnd > 0.7) {
@@ -33,10 +44,22 @@ class Person extends Component {
             <Auxiliary>
                 <p key='i1' onClick={this.props.click}>I am a {this.props.name} and i am {this.props.age} years old</p>
                 <p key='i2'>{this.props.children}</p>
-                <input key='13' type="text" onChange={this.props.changed} value={this.props.name} />
+                <input key='13'
+                    type="text"
+                    //ref={(inputEl) => { this.inputElement = inputEl }}
+                    ref={this.inputElementRef}
+                    onChange={this.props.changed}
+                    value={this.props.name} />
             </Auxiliary>
         );
     }
 }
 
-export default Person;
+Person.propTypes = {
+    clicked: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
+
+export default withClass(Person, classes.Person);
