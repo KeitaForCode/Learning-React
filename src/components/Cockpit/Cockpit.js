@@ -1,9 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 
 import classes from './Cockpit.css'
+import AuthContext from '../../context/Auth-context';
 
 const cockpit = (props) => {
     const toggleBtnRef = useRef(null);
+    const authContext = useContext(AuthContext);
+
+
+    console.log(authContext.authenticated);
 
 
 
@@ -12,7 +17,7 @@ const cockpit = (props) => {
         // you can also send Http request here
         // setTimeout(() => {
         //     alert('Saved data to cloud !');
-        // }, 1000);
+        // }, 1000);      
         toggleBtnRef.current.click();
         return () => {
             console.log('[Cockpit.js] cleanup work in useEffect');
@@ -46,6 +51,8 @@ const cockpit = (props) => {
             <button ref={toggleBtnRef}
                 className={btnClass}
                 onClick={props.clicked}>Togle persons</button>
+
+            <button onClick={authContext.login}>Login in</button>
         </div>
     );
 };
